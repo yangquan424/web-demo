@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格添加和删除</title>
+</head>
+<style>
+    body {
+        max-width: 800px;
+        min-width: 480px;
+        margin: 0 auto;
+
+    }
+
+    #div1 {
+    }
+    #div2 {
+    }
+
+    table.imagetable {
+        /*font-family: verdana,arial,sans-serif;*/
+        width: 500px;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #999999;
+        border-collapse: collapse;
+    }
+
+    table.imagetable th {
+        background: #b5cfd2;
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #999999;
+    }
+
+    table.imagetable td {
+        background: #dcddc0;
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #999999;
+    }
+
+    button {
+        background-color: blue;
+        width: 50px;
+        height: 30px;
+    }
+</style>
+<body>
+<div id="div1">
+    <label for="id">ID</label><br>
+    <input type="text" id="id" class="id"><br>
+
+    <label for="name">Name</label><br>
+    <input type="text" id="name" class="name"><br>
+</div>
+<div id="div2">
+    <label for="salary">Salary</label><br>
+    <input type="text" id="salary" class="salary"><br>
+
+    <label for="jb">Jb</label><br>
+    <input type="text" id="jb" class="jb"><br>
+</div>
+<br>
+<button id="insert">Add</button>
+<hr>
+<table class="imagetable">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Jb</th>
+        <th>delete</th>
+    </tr>
+</table>
+
+
+<script>
+    let id = document.querySelector("#id");
+    let name = document.querySelector("#name");
+    let salary = document.querySelector("#salary");
+    let jb = document.querySelector("#jb");
+    let insert = document.querySelector("#insert");
+    let tbody = document.querySelector("tbody");
+
+    insert.onclick = function () {
+        let one = id.value;
+        let two = name.value;
+        let three = salary.value;
+        let four = jb.value;
+        if (one === '' || two === '' || three === '' || four === '') {
+            alert("请输入完整的人员信息");
+        } else {
+
+            let tr1 = document.createElement("tr");
+            let id1 = document.createElement("td");
+            let name1 = document.createElement("td");
+            let salary1 = document.createElement("td");
+            let insert1 = document.createElement("td");
+            let del = document.createElement("td");
+            del.innerHTML = "'<img src='../picture/timg2.jpg' height='20'>'";
+
+            id1.textContent = one;
+            name1.textContent = two;
+            salary1.textContent = three;
+            insert1.textContent = four;
+
+            tbody.appendChild(tr1);
+            tr1.appendChild(id1);
+            tr1.appendChild(name1);
+            tr1.appendChild(salary1);
+            tr1.appendChild(insert1);
+            tr1.appendChild(del);
+
+
+            del.onclick = function () {
+                tbody.removeChild(tr1);
+            }
+
+        }
+    }
+</script>
+</body>
+</html>
+

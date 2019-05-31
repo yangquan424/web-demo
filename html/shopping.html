@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物测试</title>
+    <style>
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+
+        div {
+            text-align: center;
+        }
+
+        .title1 {
+            color: rgba(18, 0, 240, 0.98);
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1 class="title1">My Shopping List</h1>
+    <label for="shop">Enter a new item</label>
+    <input type="text" id="shop" class="shop">
+    <button id="sss">Add item</button>
+
+</div>
+<ul>
+
+</ul>
+
+<script>
+    let uls = document.querySelector("ul");
+    let buttons = document.querySelector("#sss");
+    let inputs = document.querySelector("input");
+    let wars;
+    buttons.onclick = function () {
+        wars = inputs.value;
+
+        if (wars === "") {
+            alert("请输入商品");
+        } else {
+
+            let litext = document.createElement("li");
+            let spantext = document.createElement("span");
+            let buttontext = document.createElement("button");
+
+
+            litext.appendChild(spantext);
+            litext.appendChild(buttontext);
+
+            spantext.textContent = wars;
+            buttontext.textContent = "delete";
+            buttontext.style.backgroundColor = "red";
+
+            uls.appendChild(litext);
+            buttontext.onclick = function () {
+                uls.removeChild(litext);
+            }
+
+            inputs.focus();
+        }
+    }
+
+</script>
+</body>
+</html>
