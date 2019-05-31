@@ -112,7 +112,18 @@
   },
   {
     "empno": 7902,
-
+    "ename": "FORD",
+    "job": "ANALYST",
+    "mgr": 7566,
+    "hiredate": "1981-12-13",
+    "sal": 3000,
+    "deptno": 20
+  },
+  {
+    "empno": 7934,
+    "ename": "MILLER",
+    "job": "CLERK",
+    "mgr": 7782,
     "hiredate": "1982-01-23",
     "sal": 1300,
     "deptno": 10
