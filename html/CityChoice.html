@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            text-align: center;
+        }
+
+        select {
+            background-color: #2bf0f0;
+            width: 130px;
+        }
+    </style>
+</head>
+<body>
+<select name="province" id="s1">
+
+</select>
+<select name="city" id="s2">
+
+</select>
+<select name="area" id="s3">
+
+</select>
+
+
+<script SRC="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+<script>
+    $(function () {
+        $.ajax({
+            url: "../data/provinces.json",
+            method: "GET",
+            dateType: "json",
+            success: function (s1) {
+                $.each(s1, function (index1, values1) {
+                    let $o1 = $("<option></option>");
+                    $("#s1").append($o1);
+                    $o1.append(values1.province);
+                });
+                $("#s1").click(function () {
+                    $("#s2 option").remove();
+                    $("#s3 option").remove();
+                    let pro;
+                    $.each(s1, function (index1, values1) {
+
+                        if (values1.province === $("#s1").val()) {
+                            pro = values1.provinceId;
+                            return pro;
+                        }
+                        return pro;
+                    });
+                    $.ajax({
+                        url: "../data/cities.json",
+                        method: "GET",
+                        dateType: "json",
+                        success: function (s2) {
+                            $("#s2 option").remove();
+                            $("#s3 option").remove();
+                            $.each(s2, function (index2, values2) {
+                                if (values2.provinceId === pro) {
+                                    let $o2 = $("<option></option>");
+                                    $("#s2").append($o2);
+                                    $o2.append(values2.city);
+                                }
+                            });
+                            $("#s2").click(function () {
+                                $("#s3 option").remove();
+                                let pro1;
+                                $.each(s2, function (index2, values2) {
+
+                                    if (values2.city === $("#s2").val()) {
+                                        pro1 = values2.cityId;
+                                        return pro1;
+                                    }
+                                    return pro1;
+                                });
+                                $.ajax({
+                                    url: "../data/areas.json",
+                                    method: "GET",
+                                    dateType: "json",
+                                    success: function (s3) {
+                                        $("#s3 option").remove();
+                                        $.each(s3, function (index3, values3) {
+                                            if (values3.cityId === pro1) {
+                                                let $o3 = $("<option></option>");
+                                                $("#s3").append($o3);
+                                                $o3.append(values3.area);
+                                            }
+                                        });
+                                    }
+                                });
+                            });
+                        }
+                    });
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
