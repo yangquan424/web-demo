@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery</title>
+    <style>
+        body {
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+
+        }
+
+        table.imagetable {
+            /*font-family: verdana,arial,sans-serif;*/
+            width: 800px;
+            font-size: 11px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #999999;
+            border-collapse: collapse;
+            margin-top: 100px;
+        }
+
+        table.imagetable th {
+            background: #b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+        }
+
+        table.imagetable td {
+            background: #dcddc0;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+        }
+    </style>
+</head>
+<body>
+<table class="imagetable">
+    <tr>
+        <th>empno</th>
+        <th>ename</th>
+        <th>job</th>
+        <th>mgr</th>
+        <th>hiredate</th>
+        <th>sal</th>
+        <th>com</th>
+        <th>deptno</th>
+    </tr>
+</table>
+<!-- 导入jQuery -->
+<script SRC="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+   /* //dom
+    //$("button.one").html("点我");
+    let $prevBUTTON = $("button.one");
+    $prevBUTTON.html("点我");
+
+    //event
+    $prevBUTTON.addEventListener("click",function () {
+        window.open("http://www.baidu.com");
+    });*/
+
+    $(function () {
+        let urls = "https://yangquan424.github.io/web-demo/date/emp.json";
+        $.ajax({
+            url:urls,
+            method:"GET",
+            dateType:"json",
+            success:function (s) {
+                let tbody = document.querySelector("tbody");
+                let emps = new Array("empno", "ename", "job", "mgr", "hiredate", "sal", "com", "deptno");
+                for (let i = 0; i < s.length; i++) {
+                    let values = new Array(emps.length);
+                    let tr = document.createElement("tr");
+                    tbody.appendChild(tr);
+                    for (let j = 0; j < emps.length; j++) {
+                        values[j] = document.createElement("td");
+                        let emps2 = s[i];
+                        let emps1 = emps[j];
+                        values[j].textContent = emps2[emps1];
+                        tr.appendChild(values[j]);
+                    }
+                }
+            }
+
+        });
+    })
+</script>
+
+</body>
+</html>

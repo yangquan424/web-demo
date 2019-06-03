@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        max-width: 800px;
+        min-width: 480px;
+        margin: 0 auto;
+
+    }
+
+    #div1 {
+    }
+    #div2 {
+    }
+
+    table.imagetable {
+        /*font-family: verdana,arial,sans-serif;*/
+        width: 500px;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #999999;
+        border-collapse: collapse;
+    }
+
+    table.imagetable th {
+        background: #b5cfd2;
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #999999;
+    }
+
+    table.imagetable td {
+        background: #dcddc0;
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #999999;
+    }
+
+    button {
+        background-color: blue;
+        width: 50px;
+        height: 30px;
+    }
+</style>
+<body>
+<div id="div1">
+    <label for="id">ID</label><br>
+    <input type="text" id="id" class="id"><br>
+
+    <label for="name">Name</label><br>
+    <input type="text" id="name" class="name"><br>
+</div>
+<div id="div2">
+    <label for="salary">Salary</label><br>
+    <input type="text" id="salary" class="salary"><br>
+
+    <label for="jb">Jb</label><br>
+    <input type="text" id="jb" class="jb"><br>
+</div>
+<br>
+<button id="insert">Add</button>
+<hr>
+<table class="imagetable">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Jb</th>
+        <th>delete</th>
+    </tr>
+</table>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    $(function () {
+        $("#insert").click(function () {
+            let $tr = $("<tr></tr>");
+            let $img = $("<img src='../picture/timg2.jpg' height='20px'>");
+            $("tbody").append($tr);
+            let $td = $("<td></td>");
+
+            $img.appendTo($td);
+
+            $($tr).append("<td>"+ $("#id").val() +"</td>").
+            append("<td>"+ $("#name").val() +"</td>").
+            append("<td>"+ $("#salary").val() +"</td>").
+            append("<td>"+ $("#jb").val() +"</td>").
+            append($td);
+
+            $img.click(function () {
+                $tr.remove();
+            });
+
+            $("#id").val("");
+            $("#name").val("");
+            $("#salary").val("");
+            $("#jb").val("");
+            $("#id").focus();
+        });
+    });
+
+
+</script>
+
+</body>
+</html>
