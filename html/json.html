@@ -54,7 +54,33 @@
 </table>
 
 <script>
+    //ajax
+   document.addEventListener("DOMContentLoaded",function () {
+        let url = "https://yangquan424.github.io/web-demo/date/emp.json";
+        let request = new XMLHttpRequest();
+        request.open("GET", url);
+        request.responseType = "json";
+        request.send();
 
+        request.onload = function () {
+            let emp = request.response;
+
+            let tbody = document.querySelector("tbody");
+            let emps = new Array("empno","ename","job","mgr","hiredate","sal","com","deptno");
+            for (let i = 0; i < emp.length; i++) {
+                let values = new Array(emps.length);
+                let tr = document.createElement("tr");
+                tbody.appendChild(tr);
+                for (let j = 0; j < emps.length; j++) {
+                    values[j] = document.createElement("td");
+                    let emps2 = emp[i];
+                    let emps1 = emps[j];
+                    values[j].textContent = emps2[emps1];
+                    tr.appendChild(values[j]);
+                }
+            }
+        }
+    });
 </script>
 
 </body>
